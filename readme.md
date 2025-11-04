@@ -2,7 +2,11 @@
 
 features to create:
 
-Viewing a list of tasks \\
-Adding new tasks \\
-Marking tasks as complete \\
-Deleting tasks \\
+
+Viewing a list of tasks 
+
+Adding new tasks
+
+Marking tasks as complete
+
+Deleting tasks
