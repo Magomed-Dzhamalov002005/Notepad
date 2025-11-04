@@ -1,11 +1,38 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Notepad</title>
+
+    <!-- styles and scripts  -->
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <script src="{% static 'main/js/script.js' %}" defer></script>
+    {% block style %}{% endblock %}
+
 </head>
 <body>
-    <h1>Hello</h1>
+    <nav>
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="#">Item</a></li>
+            <li><a href="#">Item</a></li>
+            <li><a href="#">Item</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="brand">
+            <h1>It's your Notepad, where you can manage your tasks.</h1>
+        </div>
+        <p>Now you're not logged in. Create accout to start manage or log in if you already have one.</p>
+    </main>
+
+    <footer>
+        <p>Hello</p>
+    </footer>
+
 </body>
 </html>

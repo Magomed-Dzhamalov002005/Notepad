@@ -1,0 +1,170 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --clr-bg: #1b1b1d;
+    --clr-bg-act: #343438;
+    --clr-bg-act-m: #41414e;
+    --clr-bg-footer: #cccad4;
+    --black: #000;
+
+    --txt-f: sans-serif;
+    --txt-clr: #000000;
+    --txt-clr-o: #ffffff;
+    --txt-link-clr: #2cda00;
+}
+
+body {
+    font-family: var(--txt-f);
+    color: var(--txt-clr);
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+input {
+    max-width: 300px;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-bottom: 2px solid black;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    vertical-align: middle;
+    border: 1px solid black;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button::after {
+    display: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type="checkbox"]:checked {
+    transform: scale(1);
+    background-color: var(--clr-bg-act-m);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+textarea {
+    width: 300px;
+    padding: 10px;
+    margin: 5px;
+    resize: none;
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+button {
+    width: 100px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 3px;
+    border: 1px solid black;
+    background-color: var(--clr-bg-act);
+    color: var(--txt-clr-o);
+    transition: .1s;
+}
+
+button:hover {
+    background-color: var(--clr-bg-act-m);
+}
+
+button:active {
+    opacity: .9;
+}
+
+nav {
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+
+    display: flex;
+    flex-direction: column;
+    background-color: var(--clr-bg);
+    color: var(--txt-clr-o);
+}
+
+nav h2 {
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+nav ul li {
+    margin: 5px 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 40px;
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--txt-clr-o);
+    transition: .1s;
+}
+
+nav ul li a:hover {
+    background-color: var(--clr-bg-act);
+    color: var(--txt-link-clr);
+}
+
+nav ul li a:active {
+    opacity: .3;
+}
+
+
+main {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+main .brand {
+    padding: 100px 0;
+}
+
+
+footer {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+
+    padding: 20px;
+    background-color: var(--clr-bg-footer);
+}
