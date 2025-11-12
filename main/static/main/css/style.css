@@ -35,6 +35,12 @@ form {
     padding: 20px;
 }
 
+form p {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
 input {
     max-width: 300px;
     padding: 10px;
@@ -162,7 +168,8 @@ main {
 }
 
 main .brand {
-    padding: 100px 0;
+    padding: 20px 0;
+    margin-bottom: 20px;
 }
 
 
@@ -172,4 +179,25 @@ footer {
 
     padding: 20px;
     background-color: var(--clr-bg-footer);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.helptext {
+    display: none;
 }

@@ -32,12 +32,20 @@
 
     {% block main %}
     <main>
-        <div class="brand">
-            <h1>It's your Notepad, where you can manage your tasks.</h1>
-        </div>
         {% if request.user.is_authenticated %} 
-        <p>Hello, {{ request.user.username }}! Create your first notes here! ...</p>
+        <div class="brand">
+            <h1>Hello, {{ request.user.username }}! Create your first notes here! ...</h1>
+        </div>
+        <p>It's your Notepad, where you can manage your tasks.</p>
+        <h3>Current tasks</h3>
+        {% for n in current_notes %}
+            <h4>{{ n.title }}</h4>
+            <p>{{ n.taskIsComplete }}</p>
+        {% endfor %}
         {% else %}
+        <div class="brand">
+            <h1>It's your Notepad, where you can manage your tasks. just live your Ideas.</h1>
+        </div>
         <p>Now you're not logged in. Create accout to start manage or log in if you already have one.</p>
         {% endif %}
     </main>
