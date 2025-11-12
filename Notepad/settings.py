@@ -80,9 +80,17 @@ WSGI_APPLICATION = 'Notepad.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Notepad_db',
+        'USER': 'hans',
+        'PASSWORD': 'hans123!',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db1.sqlite3',
+    # }
 }
 
 
