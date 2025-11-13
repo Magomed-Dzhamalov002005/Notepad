@@ -10,15 +10,11 @@
 
     <form method="POST">
         {% csrf_token %}
+        <p>Creating date: {{ note.addingDate }}</p>
         {{ note_form.as_p }}
-        <button type="submit">Commit</button>
+        <button type="submit" name="edit-form" value="1">Commit</button>
     </form>
 
-    {% if not note.taskIsComplete %}
-        <button name="complete" value="1">Complete</button>
-    {%endif%}
-
-    
 
 </main>
 {% endblock %}

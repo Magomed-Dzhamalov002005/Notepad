@@ -87,6 +87,14 @@ def edit_task(request, note_pk):
     note = Note.objects.get(pk=note_pk)
     note_form = NoteEditingForm(instance=note)
     
+    if request.POST:
+        
+        edit_form = NoteEditingForm(request.POST, instance=note)
+        
+        if edit_form.is_valid:
+            edit_form.save()
+            return redirect("main:task", note.pk)
+    
     data = {
         'note': note,
         'note_form': note_form,
