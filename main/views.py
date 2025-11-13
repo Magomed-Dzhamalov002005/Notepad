@@ -1,6 +1,8 @@
 from django.utils import timezone
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Note
+from .forms import NoteAddingForm
 from datetime import datetime
 
 
@@ -19,6 +21,7 @@ def home(request):
     return render(request, "main/index.html", context=data)
 
 
+@login_required(login_url='auth:login')
 def tasks(request):
     
     notes = []
@@ -32,6 +35,32 @@ def tasks(request):
     return render(request, 'main/tasks.html', context=data)
 
 
+@login_required(login_url='auth:login')
+def new_task(request):
+    
+    form = NoteAddingForm()
+    
+    if request.method == "POST":
+        
+        form = NoteAddingForm(request.POST)
+        
+        try:
+            if form.is_valid():
+                note = form.save(commit=False)
+                note.author = request.user
+                note.save()
+                return redirect('main:home')
+        except Exception:
+            message = "Form is not correct"
+            
+    data = {
+        'form': form,
+    }
+    
+    return render(request, 'main/new_task.html', context=data)
+
+
+@login_required(login_url='auth:login')
 def task(request, note_pk):
     
     note = Note.objects.get(pk=note_pk)

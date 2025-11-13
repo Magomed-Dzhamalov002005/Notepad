@@ -1,0 +1,14 @@
+{% extends "main/index.html" %}
+
+{% block main %}
+<main>
+    <div class="brand">
+        <h1>Add a new task here</h1>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+</main>
+{% endblock %}

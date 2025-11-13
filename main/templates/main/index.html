@@ -19,9 +19,10 @@
     <nav>
         <a href="{% url 'main:home' %}"><h2>Menu</h2></a>
         <ul>
-            <li><a href="{% url 'main:tasks' %}">Tasks</a></li>
-            <li><a href="#">Statistics</a></li>
             {% if request.user.is_authenticated %} 
+                <li><a href="{% url 'main:tasks' %}">Tasks</a></li>
+                <li><a href="{% url 'main:new_task' %}">Add Task</a></li>
+                <li><a href="#">Statistics</a></li>
                 <li><a href="{% url 'auth:logout' %}">Log out</a></li>
             {% else %}
                 <li><a href="{% url 'auth:login' %}">Log In</a></li>
