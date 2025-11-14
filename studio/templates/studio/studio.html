@@ -1,0 +1,11 @@
+{% extends "main/index.html" %}
+{% load static %}
+
+{% block main %}
+<main>
+    <div class="brand">
+        <h1>{{ note.title }}</h1><a href="{% url 'main:edit_task' note.pk %}">edit</a>
+    </div>
+    
+</main>
+{% endblock %}
