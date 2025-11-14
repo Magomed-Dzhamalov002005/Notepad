@@ -169,6 +169,8 @@ main {
 
 main .brand {
     display: flex;
+    align-items: center;
+    gap: 40px;
     padding: 20px 0;
     margin-bottom: 20px;
 }

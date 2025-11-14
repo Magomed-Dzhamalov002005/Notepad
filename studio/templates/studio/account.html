@@ -1,0 +1,23 @@
+{% extends "main/index.html" %}
+{% load static %}
+
+{% block main %}
+<main>
+    <a href="{% url 'studio:statistics' %}"><h3>Get Back</h3></a>
+    <div class="brand">
+        <h1>Account {{ request.user.username }}</h1>
+    </div>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+
+</main>
+{% endblock %}

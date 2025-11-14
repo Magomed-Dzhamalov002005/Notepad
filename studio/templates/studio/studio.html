@@ -4,8 +4,13 @@
 {% block main %}
 <main>
     <div class="brand">
-        <h1>It's your account statistics!</h1>
+        <h1>Account {{ request.user.username }}</h1>
+        <a href="{% url 'studio:edit_account' request.user.username %}">Edit account</a>
     </div>
     
+    <p>
+        <h4>All notes: {{ note_count }}</h4>
+    </p>
+
 </main>
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block main %}
 <main>
     <div class="brand">
-        <h1>{{ note.title }}</h1><a href="{% url 'main:edit_task' note.pk %}">edit</a>
+        <h1>{{ note.title }}</h1><a href="{% url 'main:edit_task' note.pk %}">Edit task</a>
     </div>
     {% if note.taskIsComplete %}
         <h3 class="task-c">Task is complete! Congratulations!!!</h3>
