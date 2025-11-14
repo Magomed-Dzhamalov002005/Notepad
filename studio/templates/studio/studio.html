@@ -8,6 +8,8 @@
         <a href="{% url 'studio:edit_account' request.user.username %}">Edit account</a>
     </div>
     
+    {% if messages %} {% for m in messages %} <p>{{m}}</p> {% endfor %} {% endif %}
+
     <p>
         <h4>All notes: {{ note_count }}</h4>
     </p>
