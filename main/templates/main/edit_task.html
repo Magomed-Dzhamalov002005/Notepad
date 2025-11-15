@@ -3,7 +3,7 @@
 
 {% block main %}
 <main>
-    <a href="{% url 'main:task' note.pk %}"><h3>Get Back</h3></a>
+    <a href="{% url 'main:task' note.pk %}" class="get-back-url"><h3>Get Back</h3></a>
     <div class="brand">
         <h1>{{ note.title }}</h1>
     </div>
@@ -18,7 +18,7 @@
     <form method="POST">
         {% csrf_token %}
         <p style="color:red">Important! Only if it is necessary! It'll got out of your account statics.</p>
-        <button type="submit" name="delete-form" value="1">Delete task</button>
+        <button type="submit" name="delete-form" value="1" id="task-delete">Delete task</button>
     </form>
 
 </main>

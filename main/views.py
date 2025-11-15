@@ -13,7 +13,7 @@ def home(request):
     
     current_notes = []
     if request.user.is_authenticated:
-        current_notes = Note.objects.filter(dateStart__lte=today, dateEnd__gte=today, author=request.user.pk)   
+        current_notes = Note.objects.filter(dateStart__lte=today, dateEnd__gte=today, author=request.user.pk, taskIsComplete=False)   
     
     data = {
         'current_notes': current_notes,
