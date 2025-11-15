@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import update_session_auth_hash, authenticate, login
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 from authentication.forms import RegisterForm
 from main.models import Note
 
@@ -28,24 +29,29 @@ def edit_account(request, username):
         edit = request.POST.get("user-edit")
         
         if edit:
-            try:
+            # try:
+                current_user_data = User.objects.get(pk=request.user.pk)
                 user_edit_form = RegisterForm(request.POST, instance=request.user)
-                if user_edit_form.is_valid:
+                # messages.error(request, "The data is same!")
+                
+                if user_edit_form.is_valid():           
+                    
                     user = user_edit_form.save()
                     update_session_auth_hash(request, user)
+                    messages.success(request, "Changes saved")
                     return redirect("studio:statistics")
-            except Exception:
-                print("Smth went wrong.")
+            # except Exception:
+            #     print("Smth went wrong.")
         
         delete = request.POST.get("user-delete")
         
         if delete:
             try:
                 User.objects.get(pk=request.user.pk, username=username).delete()
-                print("deleted")
+                messages.success(request, "Account deleted successfully!")
                 return redirect("main:home")
             except Exception:
-                print("Smth went wrong")
+                messages.success(request, "Smth went wrong")
     
     
     data = {

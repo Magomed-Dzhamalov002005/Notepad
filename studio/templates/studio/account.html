@@ -1,6 +1,10 @@
 {% extends "main/index.html" %}
 {% load static %}
 
+{% block style %} 
+    <script src="{% static 'studio/js/studio.js' %}" defer></script> 
+{% endblock %}
+
 {% block main %}
 <main>
     <a href="{% url 'studio:statistics' %}"><h3>Get Back</h3></a>
@@ -8,6 +12,8 @@
         <h1>Account {{ request.user.username }}</h1>
     </div>
     
+    {% if messages %} {% for m in messages %} <p>{{m}}</p> {% endfor %} {% endif %}
+
     <form method="POST">
         {% csrf_token %}
         {{ user_form.as_p }}
@@ -16,7 +22,7 @@
 
     <form method="POST">
         {% csrf_token %}
-        <button type="submit" name="user-delete" value="1">Delete</button>
+        <button type="submit" name="user-delete" id="user-delete" value="1">Delete</button>
     </form>
 
 </main>
