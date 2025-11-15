@@ -5,6 +5,9 @@
     <div class="brand">
         <h1>Add a new task here</h1>
     </div>
+    
+    {% if messages %} {% for m in messages %} <p>{{m}}</p> {% endfor %} {% endif %}
+
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

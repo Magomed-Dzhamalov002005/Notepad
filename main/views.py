@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Note
 from .forms import NoteAddingForm, NoteEditingForm
 from datetime import datetime
+from django.contrib import messages
 
 
 today = datetime.now()
@@ -47,12 +48,17 @@ def new_task(request):
         
         try:
             if form.is_valid():
+                
+                if form.cleaned_data["dateStart"] >= form.cleaned_data["dateEnd"]:
+                    messages.error(request, "Starting date can not be ahead of ending!")
+                    return redirect("main:new_task")
+                
                 note = form.save(commit=False)
                 note.author = request.user
                 note.save()
                 return redirect('main:home')
         except Exception:
-            message = "Form is not correct"
+            messages.error(request, "Form is not correct")
             
     data = {
         'form': form,
