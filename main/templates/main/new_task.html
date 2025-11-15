@@ -5,7 +5,7 @@
     <div class="brand">
         <h1>Add a new task here</h1>
     </div>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Create</button>

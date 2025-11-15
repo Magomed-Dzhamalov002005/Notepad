@@ -10,6 +10,7 @@ class Note(models.Model):
     addingDate = models.DateTimeField(auto_now=True)
     dateStart = models.DateTimeField()
     dateEnd = models.DateTimeField()
+    file = models.FileField(blank=True)
     taskIsComplete = models.BooleanField(default=False)
     
     def __str__(self):

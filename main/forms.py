@@ -9,18 +9,19 @@ class NoteAddingForm(forms.ModelForm):
     
     dateStart = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}), label="Starting date")
     dateEnd = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}), label="Finishing date")
+    file = forms.FileField(widget=forms.FileInput, label="Optional file: ", required=False)
     
     class Meta:
         model = Note
-        fields = ["title", "description", "dateStart", "dateEnd"]
+        fields = ["title", "description", "dateStart", "dateEnd", "file"]
 
 
 class NoteEditingForm(forms.ModelForm):
     
     dateStart = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}), label="Starting date")
     dateEnd = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}), label="Finishing date")
-    # addingDate = forms.DateTimeField()
+    file = forms.FileField(widget=forms.FileInput, label="Optional file: ", required=False)
     
     class Meta:
         model = Note
-        fields = ["title", "description", "dateStart", "dateEnd", "taskIsComplete"]
+        fields = ["title", "description", "dateStart", "dateEnd", "file", "taskIsComplete"]

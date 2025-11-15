@@ -175,6 +175,11 @@ main .brand {
     margin-bottom: 20px;
 }
 
+main .task a {
+    text-decoration: none;
+    color: rgb(27, 15, 0);
+}
+
 
 footer {
     grid-column: 2 / 3;
@@ -189,7 +194,15 @@ footer {
 
 
 
+.edit-link {
+    text-decoration: none;
+    color: #cf004f;
+}
 
+.get-back-url {
+    text-decoration: none;
+    color: #28a745;
+}
 
 .helptext {
     display: none;

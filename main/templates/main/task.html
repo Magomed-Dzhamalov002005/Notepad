@@ -4,7 +4,7 @@
 {% block main %}
 <main>
     <div class="brand">
-        <h1>{{ note.title }}</h1><a href="{% url 'main:edit_task' note.pk %}">Edit task</a>
+        <h1>{{ note.title }}</h1><a href="{% url 'main:edit_task' note.pk %}" class="edit-link">Edit task</a>
     </div>
     {% if note.taskIsComplete %}
         <h3 class="task-c">Task is complete! Congratulations!!!</h3>
@@ -18,6 +18,9 @@
     </div>
 
     <div class="range">
+        {% if note.file %}
+        <p>Optional file: <a href="{{note.file.url}}" target="_blank">{{ note.file }}</a> <a href="{% url 'main:file_download' note.pk %}">Download file</a></p>
+        {% endif %}
         <p>Task started at {{ note.dateStart }}</p>
         <p>Finishing date: {{ note.dateEnd }}</p>
     </div>

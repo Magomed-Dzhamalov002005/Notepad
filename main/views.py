@@ -1,4 +1,5 @@
-from django.utils import timezone
+from django.shortcuts import get_object_or_404
+from django.http import FileResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Note
@@ -12,7 +13,7 @@ def home(request):
     
     current_notes = []
     if request.user.is_authenticated:
-        current_notes = Note.objects.filter(dateStart__lte=today, dateEnd__gte=today, author=request.user.pk)   
+        current_notes = Note.objects.filter(dateStart__lte=today, dateEnd__gte=today, author=request.user.pk, taskIsComplete=False)   
     
     data = {
         'current_notes': current_notes,
@@ -42,7 +43,7 @@ def new_task(request):
     
     if request.method == "POST":
         
-        form = NoteAddingForm(request.POST)
+        form = NoteAddingForm(request.POST, request.FILES)
         
         try:
             if form.is_valid():
@@ -81,6 +82,16 @@ def task(request, note_pk):
     return render(request, 'main/task.html', context=data)
 
 
+def file_download(request, pk):
+
+    document = get_object_or_404(Note, pk=pk)
+    file_path = document.file.path
+    
+    file_obj = open(file_path, "rb")
+    
+    return FileResponse(file_obj, as_attachment=True, filename=document.file.name)
+
+
 @login_required(login_url='auth:login')
 def edit_task(request, note_pk):
     
@@ -92,7 +103,7 @@ def edit_task(request, note_pk):
         editing_form = request.POST.get("edit_form")
         
         if editing_form:
-            edit_form = NoteEditingForm(request.POST, instance=note)
+            edit_form = NoteEditingForm(request.POST, request.FILES, instance=note)
         
             if edit_form.is_valid:
                 edit_form.save()
